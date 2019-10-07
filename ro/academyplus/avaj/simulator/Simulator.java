@@ -1,7 +1,7 @@
 // Compile with:
 //javac Simulator.java && java Simulator docs/scenario.txt
 
-//package ro.academyplus.avaj.simulator.Simulator;
+//package ro.academyplus.avaj.simulator;
 
 import java.io.BufferedReader;
 import java.io.File;
