@@ -22,7 +22,8 @@ public class Simulator {
         File f = null;
         FileReader r = null;
         BufferedReader bfr = null;
-        String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename;
+        //String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
+        String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
         int i = 0;
         AircraftFactory af = null;
 
@@ -38,10 +39,10 @@ public class Simulator {
                     String[] parts = temp.split(" ");
                     af = new AircraftFactory();
                     af.newAircraft(parts[0],
-                                java.parseInt(parts[1]),
-                                java.parseInt(parts[2]),
-                                java.parseInt(parts[3]),
-                                java.parseInt(parts[4]));
+                                parts[1],
+                                Integer.parseInt(parts[2]),
+                                Integer.parseInt(parts[3]),
+                                Integer.parseInt(parts[4]));
                 }
             }
         }

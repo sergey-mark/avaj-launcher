@@ -1,4 +1,7 @@
 
+# To download JDK Java on Mac to use javac command:
+# https://www.oracle.com/technetwork/java/javase/downloads/jdk13-downloads-5672538.html
+# Or at 42 install "JDK8" with manager software center.
 
 #TO START THE PROGRAM:
 

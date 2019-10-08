@@ -5,12 +5,17 @@ public class WeatherProvider {
     private WeatherProvider weatherProvider;
     private String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
-    public void WeatherProvider() {
+    public WeatherProvider() {
 
-	/*int n = rand(0, 4);
+    int rand = (int )(Math.random() * 4);
+    String[][] arrays = new String[5][];
 	int i = 0;
-	while (i < )
-	private String[][][] allWeather = weather[n];*/
+    while (i < 100)
+    {
+        arrays[i] = new String[] {"a", weather[rand], weather[rand]};
+        i++;
+    }
+	
     }
     public WeatherProvider getProvider() {
         

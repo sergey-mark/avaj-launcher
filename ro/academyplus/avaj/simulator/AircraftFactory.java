@@ -17,15 +17,14 @@ public class AircraftFactory {
 	else if (height > 100)
 		height = 100;
 	
-        System.out.println("Call of function newAircraft.");
-        //Coordinates coord;
-	//coord = new Coordinates(longitude, latitude, height);
-        if (type == "Helicopter")
-            ac = new Helicopter(name, new Coordinates(longitude, latitude, height));
-        /*else if (type == "JetPlane")
-            ac = new JetPlane(name, coord);
-        else if (type == "Baloon")
-            ac = new Baloon(name, coord);*/
+	System.out.println("Call of function newAircraft.");
+	Coordinates coord = new Coordinates(longitude, latitude, height);
+	if (type == "Helicopter")
+		ac = new Helicopter(name, coord);
+	else if (type == "JetPlane")
+		ac = new JetPlane(name, coord);
+	else if (type == "Baloon")
+		 ac = new Baloon(name, coord);
 	return ac;
     }
 }

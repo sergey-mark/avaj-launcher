@@ -1,16 +1,18 @@
 package ro.academyplus.avaj.simulator;
 
+import java.util.jar.Attributes.Name;
+
 public class Tower {
 
     private Flyable observers;
 
     public void register(Flyable flyable) {
-
-        //observers = flyable;
+        
+        //System.out.println("Tower says: " + observers.type + "#" + name + "(" + observers.idCounter + ") registered from weather tower."); 
     }
     public void unregister(Flyable flyable) {
 
-        
+        //System.out.println("Tower says: " + observers.type + "#" + name + "(" + observers.idCounter + ") unregistered from weather tower."); 
     }
     protected void conditionsChanged() {
 

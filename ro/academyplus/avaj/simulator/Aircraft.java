@@ -1,16 +1,16 @@
 package ro.academyplus.avaj.simulator;
 
-public class        Aircraft {
+public class                  Aircraft {
 
     protected long            id;
     protected String          name;
     protected Coordinates     coordinates;
     private long              idCounter = 0;
 
-    public Aircraft() {
-
+    protected Aircraft() {
     }
-    private Aircraft(String name, Coordinates coordinates) {
+
+    protected Aircraft(String name, Coordinates coordinates) {
 
         this.nextId();
     }
