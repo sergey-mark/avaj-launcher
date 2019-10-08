@@ -1,11 +1,8 @@
-public class                Flyable {
+package ro.academyplus.avaj.simulator;
 
-    public void updateConditions() {
+public interface                Flyable {
 
-    }
-
-    public void registerTower(WeatherTower weatherTower) {
-
-    }
+    public void updateConditions();
+    public void registerTower(WeatherTower weatherTower);
 
 }

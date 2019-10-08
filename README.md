@@ -3,7 +3,7 @@
 #TO START THE PROGRAM:
 
 // To compile one file:
-javac Fileloader.java
+javac Simulator.java
 // To compile them all:
 find . -name "*.java" > sources.txt && cat sources.txt
 // To execute all files:
@@ -11,7 +11,7 @@ javac -sourcepath @sources.txt
 // or to execute all packages and create respectives directory add -d options:
 javac -d . *.java
 // Then to execute:
-java Fileloader docs/scenario.txt
+java Simulator docs/scenario.txt
 
 #Notes:
     - La commande javac permet de compiler la classe Exo.java, ainsi le fichier Exo.class sera généré en absence d'erreur de compilation. 

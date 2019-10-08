@@ -1,4 +1,4 @@
-import ro.academuplus.avaj.simulator.Simulator;
+package ro.academyplus.avaj.simulator;
 
 public class AircraftFactory {
 
@@ -7,15 +7,25 @@ public class AircraftFactory {
 
     }
 
-    public Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
-
+    public Flyable newAircraft(String type, String name, int longitude, int latitude, int height)
+    {
+	Flyable	ac = null;
         System.out.println("Call of function newAircraft.");
-        Coordinates coord = new Coordinates(longitude, latitude, height);
+
+	if (height < 0)
+		height = 0;
+	else if (height > 100)
+		height = 100;
+	
+        System.out.println("Call of function newAircraft.");
+        //Coordinates coord;
+	//coord = new Coordinates(longitude, latitude, height);
         if (type == "Helicopter")
-            ac = new Helicopter(name, coord);
-        else if (type == "JetPlane")
+            ac = new Helicopter(name, new Coordinates(longitude, latitude, height));
+        /*else if (type == "JetPlane")
             ac = new JetPlane(name, coord);
         else if (type == "Baloon")
-            ac = new Baloon(name, coord);
+            ac = new Baloon(name, coord);*/
+	return ac;
     }
 }

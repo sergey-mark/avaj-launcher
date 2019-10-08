@@ -1,17 +1,25 @@
+package ro.academyplus.avaj.simulator;
+
 public class WeatherProvider {
 
     private WeatherProvider weatherProvider;
-    private String[] weather = "default weather";
+    private String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
     public void WeatherProvider() {
 
+	/*int n = rand(0, 4);
+	int i = 0;
+	while (i < )
+	private String[][][] allWeather = weather[n];*/
     }
     public WeatherProvider getProvider() {
-        String weather = "test SUN weatherTower";
-        return weather;
+        
+        return weatherProvider;
     }
     public String getCurrentWeather(Coordinates coordinates) {
-        return weather;
+	
+        //return allWeather[coordinates.getLongitude()][coordinates.getLatitude()][coordinates.getHeight()];
+	return "test";
     }
 
 }

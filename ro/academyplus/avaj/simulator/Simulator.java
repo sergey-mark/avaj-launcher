@@ -1,7 +1,7 @@
 // Compile with:
 //javac Simulator.java && java Simulator docs/scenario.txt
 
-//package ro.academyplus.avaj.simulator;
+package ro.academyplus.avaj.simulator;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,7 +24,7 @@ public class Simulator {
         BufferedReader bfr = null;
         String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename;
         int i = 0;
-        //AircraftFactory af = null;
+        AircraftFactory af = null;
 
         f = new File(fullpath);
         try {
@@ -36,12 +36,12 @@ public class Simulator {
                 if (i != 0)
                 {
                     String[] parts = temp.split(" ");
-                    /*af = new AircraftFactory();
+                    af = new AircraftFactory();
                     af.newAircraft(parts[0],
-                                parts[1],
-                                parts[2],
-                                parts[3],
-                                parts[4]);*/
+                                java.parseInt(parts[1]),
+                                java.parseInt(parts[2]),
+                                java.parseInt(parts[3]),
+                                java.parseInt(parts[4]));
                 }
             }
         }

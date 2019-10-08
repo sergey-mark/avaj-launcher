@@ -1,3 +1,5 @@
+package ro.academyplus.avaj.simulator;
+
 public class        Aircraft {
 
     protected long            id;

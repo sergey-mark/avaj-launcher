@@ -1,12 +1,16 @@
+package ro.academyplus.avaj.simulator;
+
 public class                Coordinates {
 
     private int             longitude;
     private int             latitude;
     private int             height;
 
-    private Coordinates(int longitude, int latitude, int height) {
-
-        
+    public void Coordinates(int longitude, int latitude, int height) {
+	
+        this.longitude = longitude;
+        this.latitude = latitude;;
+        this.height = height;
     }
 
     public int getLongitude() { return longitude; }
