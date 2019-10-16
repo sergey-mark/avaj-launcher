@@ -6,7 +6,8 @@ public class                JetPlane extends Aircraft implements Flyable {
 
     public JetPlane(String name, Coordinates coordinates) {
 
-        super(name, coordinates); //super() permet d'appeler le contructeur parent
+		super(name, coordinates); //super() permet d'appeler le contructeur parent
+		System.out.println("Call of class JetPlane.");
     }
 
 	public void updateConditions() {	

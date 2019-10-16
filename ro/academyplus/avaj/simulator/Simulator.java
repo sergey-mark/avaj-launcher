@@ -22,13 +22,15 @@ public class Simulator {
         File f = null;
         FileReader r = null;
         BufferedReader bfr = null;
-        //String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
-        String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
+        String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
+        //String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
         int i = 0;
         AircraftFactory af = null;
 
+        System.out.println("Call of fileloader.");
         f = new File(fullpath);
         try {
+            System.out.println("Call of try");
             String temp = "";
             r = new FileReader(f);
             bfr = new BufferedReader(r);
@@ -36,6 +38,7 @@ public class Simulator {
                 System.out.println(temp);
                 if (i != 0)
                 {
+                    System.out.println("Call of supersplit");
                     String[] parts = temp.split(" ");
                     af = new AircraftFactory();
                     af.newAircraft(parts[0],
@@ -44,6 +47,7 @@ public class Simulator {
                                 Integer.parseInt(parts[3]),
                                 Integer.parseInt(parts[4]));
                 }
+                i++;
             }
         }
         catch (IOException ex) {

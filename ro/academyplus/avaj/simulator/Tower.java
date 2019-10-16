@@ -1,7 +1,5 @@
 package ro.academyplus.avaj.simulator;
 
-import java.util.jar.Attributes.Name;
-
 public class Tower {
 
     private Flyable observers;
