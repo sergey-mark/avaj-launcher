@@ -3,7 +3,7 @@ package ro.academyplus.avaj.simulator;
 public class AircraftFactory {
 
     public AircraftFactory() {
-
+		
 
     }
 
@@ -18,12 +18,14 @@ public class AircraftFactory {
 		height = 100;
 	
 	Coordinates coord = new Coordinates(longitude, latitude, height);
-	if (type == "Helicopter")
+	if (type.equals("Helicopter"))
 		ac = new Helicopter(name, coord);
-	else if (type == "JetPlane")
+	else if (type.equals("JetPlane"))
 		ac = new JetPlane(name, coord);
-	else if (type == "Baloon")
+	else if (type.equals("Baloon"))
 		 ac = new Baloon(name, coord);
 	return ac;
+
+	
     }
 }

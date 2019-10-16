@@ -8,6 +8,7 @@ public class WeatherTower extends Tower {
         
     }
     public String getWeather(Coordinates coordinates) {
+        //AircraftFactory.weatherProvider.getCurrentWeather();
         String weather = "test SUN weatherTower";
         return weather;
     }
