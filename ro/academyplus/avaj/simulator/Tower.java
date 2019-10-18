@@ -13,8 +13,8 @@ public class Tower {
     }
     public void unregister(Flyable flyable) {
 
-        observers.remove( flyable );
-        //System.out.println("Tower says: " + observers.type + "#" + name + "(" + observers.idCounter + ") unregistered from weather tower."); 
+        //observers.remove( flyable );
+        System.out.println("Tower says: " + flyable.id + "#" + flyable.name + "(" + flyable.idCounter + ") unregistered from weather tower with longitude: " + flyable.coordinates.getLongitude() + " latitude: " + flyable.coordinates.getLatitude() + " height: " + flyable.coordinates.getHeight() + "."); 
     }
     protected void conditionsChanged() {
 

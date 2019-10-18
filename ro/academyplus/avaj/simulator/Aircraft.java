@@ -12,12 +12,14 @@ public class                  Aircraft {
 
     protected Aircraft(String name, Coordinates coordinates) {
 
-        this.nextId();
+        this.coordinates = coordinates;
+        this.names = names;
+        this.id = this.nextId();
     }
 
     private long nextId() {
 
-        return idCounter++;
+        this.idCounter++;
     }
 
 }
