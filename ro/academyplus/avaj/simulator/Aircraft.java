@@ -13,13 +13,13 @@ public class                  Aircraft {
     protected Aircraft(String name, Coordinates coordinates) {
 
         this.coordinates = coordinates;
-        this.names = names;
+        this.name = name;
         this.id = this.nextId();
     }
 
     private long nextId() {
 
-        this.idCounter++;
+        return this.idCounter++;
     }
 
 }

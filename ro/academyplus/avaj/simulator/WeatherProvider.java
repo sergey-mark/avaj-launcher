@@ -13,15 +13,7 @@ public class WeatherProvider {
     /** C'est un Constructeur privé car c'est un Singleton et qu'il n'y aura qu'une instance: */
     private WeatherProvider() {
 
-        int rand = (int )(Math.random() * 4);
-        String[][] arrays = new String[5][];
-        int i = 0;
-        while (i < 100)
-        {
-            arrays[i] = new String[] {"a", weather[rand], weather[rand]};
-            i++;
-        }
-	
+    
     }
 
     /** Instance unique pré-initialisée */
@@ -34,9 +26,17 @@ public class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-	
+    
+        int rand = (int )(Math.random() * 4);
+        /*String[][] arrays = new String[5][];
+        int i = 0;
+        while (i < 100)
+        {
+            arrays[i] = new String[] {"a", weather[rand], weather[rand]};
+            i++;
+        }*/
         //return allWeather[coordinates.getLongitude()][coordinates.getLatitude()][coordinates.getHeight()];
-	return "test";
+	return weather[rand];
     }
 
 }

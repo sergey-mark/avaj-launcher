@@ -3,25 +3,32 @@ package ro.academyplus.avaj.simulator;
 public class                Baloon extends Aircraft implements Flyable { 
 
 	private WeatherTower    weatherTower = new WeatherTower();
-	private String			name;
 
     public Baloon(String name, Coordinates coordinates) {
-		
-		System.out.println("Call of class Baloon.");
 		super(name, coordinates); //super() permet d'appeler le contructeur parent
+		System.out.println("Call of class Baloon.");
 		this.registerTower(weatherTower);
 		weatherTower.getWeather(coordinates);
 	}
 	
     public void updateConditions() {	
 		//System.out.println("updateConditions from Baloon !!!");
-		weatherTower.conditionsChanged();
-		◦ SUN - Longitude increases with 2, Height increases with 4
-◦ RAIN - Height decreases with 5
-◦ FOG - Height decreases with 3
-◦ SNOW - Height decreases with 15
-		System.out.println("Baloon" + "#" + this.name + "(" + super.id + "): Let's enjoy the good weather and take some pics.");
-		
+		this.conditionsChanged();
+		if (weatherTower.getWeather(super.coordinates) == "SUN")
+		{
+			super.coordinates.setLongitude((super.coordinates.getLongitude() + 2 > 100) ? 100 : super.coordinates.getLongitude() + 2);
+			super.coordinates.setHeight((super.coordinates.getHeight() + 4 > 100) ? 100 : super.coordinates.getHeight() + 4);
+		}
+		else if (weatherTower.getWeather(super.coordinates) == "RAIN")
+			super.coordinates.setHeight((super.coordinates.getHeight() >= 5) ? super.coordinates.getHeight() - 5 : 0);
+		else if (weatherTower.getWeather(super.coordinates) == "FOG")
+			super.coordinates.setHeight((super.coordinates.getHeight() >= 3) ? super.coordinates.getHeight() - 3 : 0);
+		else if (weatherTower.getWeather(super.coordinates) == "SNOW") {
+			super.coordinates.setHeight((super.coordinates.getHeight() >= 15) ? super.coordinates.getHeight() - 15 : 0);
+		}
+		System.out.println("Baloon" + "#" + super.name + "(" + super.id + "): Let's enjoy the good weather and take some pics.");
+		if (super.coordinates.getHeight() == 0) //If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
+			this.weatherTower.unregister(this);
 	}
     public void registerTower(WeatherTower weatherTower) {
 		

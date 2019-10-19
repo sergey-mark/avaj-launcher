@@ -5,31 +5,32 @@ public class                Helicopter extends Aircraft implements Flyable {
     private WeatherTower    weatherTower;
 
     public Helicopter(String name, Coordinates coordinates) {
-
-		System.out.println("Call of class Helicopter.");
 		super(name, coordinates); //super() permet d'appeler le contructeur parent
+		System.out.println("Call of class Helicopter.");
 		updateConditions();
     }
 
 	public void updateConditions() {	
-		System.out.println("updateConditions from Baloon !!!");
+		//System.out.println("updateConditions from Helictopter !!!");
 		if (weatherTower.getWeather(super.coordinates) == "SUN")
 		{
-			super.coordinates.lontitude += 10;
-			super.coordinates.height += 2;
+			super.coordinates.setLongitude((super.coordinates.getLongitude() + 10 > 100) ? 100 : super.coordinates.getLongitude() + 10);
+			super.coordinates.setHeight((super.coordinates.getHeight() + 2 > 100) ? 100 : super.coordinates.getHeight() + 2);
 		}
 		else if (weatherTower.getWeather(super.coordinates) == "RAIN")
-			super.coordinates.lontitude += 5;
+			super.coordinates.setLongitude((super.coordinates.getLongitude() + 5 > 100) ? 100 : super.coordinates.getLongitude() + 5);
 		else if (weatherTower.getWeather(super.coordinates) == "FOG")
-			super.coordinates.lontitude += 1;
+			super.coordinates.setLongitude((super.coordinates.getLongitude() + 1 > 100) ? 100 : super.coordinates.getLongitude() + 1);
 		else if (weatherTower.getWeather(super.coordinates) == "SNOW") {
-			if (super.coordinates.height >= 12)
-				super.coordinates.height -= 12;
-			else
-				super.coordinates.height = 0;
+			super.coordinates.setHeight((super.coordinates.getHeight() >= 12) ? super.coordinates.getHeight() - 12 : 0);
 		}
+		System.out.println("Helicopter" + "#" + super.name + "(" + super.id + "): Let's enjoy the good weather and take some pics.");
+		if (super.coordinates.getHeight() == 0) //If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
+			this.weatherTower.unregister(this);
+		
 	}
     public void registerTower(WeatherTower weatherTower) {
+		weatherTower.register(this);
 		System.out.println("registerTower from Baloon !!!");
 	}
 

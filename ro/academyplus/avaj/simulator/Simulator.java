@@ -7,9 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Simulator {
 
@@ -26,19 +23,22 @@ public class Simulator {
         String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
         int i = 0;
         AircraftFactory af = null;
+        int nbrWeather = 0;
 
-        System.out.println("Call of fileloader.");
+        //System.out.println("Call of fileloader.");
         f = new File(fullpath);
         try {
-            System.out.println("Call of try");
+            //System.out.println("Call of try");
             String temp = "";
             r = new FileReader(f);
             bfr = new BufferedReader(r);
             while ((temp = bfr.readLine()) != null) {
                 System.out.println(temp);
-                if (i != 0)
+                if (i == 0)
+                    nbrWeather = Integer.parseInt(temp);
+                else
                 {
-                    System.out.println("Call of supersplit");
+                    //System.out.println("Call of supersplit");
                     String[] parts = temp.split(" ");
                     af = new AircraftFactory();
                     af.newAircraft(parts[0],
@@ -49,6 +49,7 @@ public class Simulator {
                 }
                 i++;
             }
+            System.out.println("Nbr of weather changes:" + nbrWeather);
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -61,13 +62,13 @@ public class Simulator {
 
     }
     public static void main(String[] args) {
-        System.out.println("Call of Class Simulator.");
-        System.out.println(args[0]);
-        System.out.println(args.length);
+        //System.out.println("Call of Class Simulator.");
+        //System.out.println(args[0]);
+        //System.out.println(args.length);
         try {
 		    if (args[0] != null && args.length == 1)
         	{
-                System.out.println("ok inside");
+                //System.out.println("ok inside");
                 fileloader(args[0]); 
         	}
         } catch (Exception ex) {
