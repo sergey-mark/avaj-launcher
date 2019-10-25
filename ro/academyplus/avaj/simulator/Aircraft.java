@@ -14,8 +14,8 @@ public class                  Aircraft {
 
         this.coordinates = coordinates;
         this.name = name;
-        this.id = this.nextId();
-        System.out.println("id:" + this.id);
+        this.id = nextId();
+        //System.out.println("id:" + this.id);
     }
 
     static private long nextId() {

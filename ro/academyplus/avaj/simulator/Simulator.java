@@ -24,6 +24,7 @@ public class Simulator {
         int i = 0;
         AircraftFactory af = null;
         int nbrWeather = 0;
+        WeatherTower weatherTower = new WeatherTower();
 
         //System.out.println("Call of fileloader.");
         f = new File(fullpath);
@@ -38,10 +39,10 @@ public class Simulator {
                     nbrWeather = Integer.parseInt(temp);
                 else
                 {
-                    System.out.println("Call of supersplit");
+                    //System.out.println("Call of supersplit");
                     String[] parts = temp.split(" ");
                     af = new AircraftFactory();
-                    System.out.println(parts[0]);
+                    //System.out.println(parts[0]);
                     af.newAircraft(parts[0],
                                 parts[1],
                                 Integer.parseInt(parts[2]),
@@ -51,6 +52,16 @@ public class Simulator {
                 i++;
             }
             System.out.println("Nbr of weather changes:" + nbrWeather);
+            int j = 0;
+            if (nbrWeather > 0) {
+                while (j < nbrWeather) {
+                    //af.changeWeather();
+                    System.out.println("Conditions changed:" + j);
+                    weatherTower.changeWeather();
+                    //weatherTower.getWeather();
+                    j++;
+                }
+            }
         }
         catch (IOException ex) {
             ex.printStackTrace();

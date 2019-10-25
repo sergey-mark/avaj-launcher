@@ -28,6 +28,8 @@ public class WeatherProvider {
     public String getCurrentWeather(Coordinates coordinates) {
     
         int rand = (int )(Math.random() * 4);
+
+        System.out.println("NEW WEATHER:" + weather[rand]);
         /*String[][] arrays = new String[5][];
         int i = 0;
         while (i < 100)
