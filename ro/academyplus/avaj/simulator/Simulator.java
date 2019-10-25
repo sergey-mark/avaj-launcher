@@ -19,8 +19,8 @@ public class Simulator {
         File f = null;
         FileReader r = null;
         BufferedReader bfr = null;
-        //String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
-        String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
+        String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
+        //String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
         int i = 0;
         AircraftFactory af = null;
         int nbrWeather = 0;
@@ -38,9 +38,10 @@ public class Simulator {
                     nbrWeather = Integer.parseInt(temp);
                 else
                 {
-                    //System.out.println("Call of supersplit");
+                    System.out.println("Call of supersplit");
                     String[] parts = temp.split(" ");
                     af = new AircraftFactory();
+                    System.out.println(parts[0]);
                     af.newAircraft(parts[0],
                                 parts[1],
                                 Integer.parseInt(parts[2]),

@@ -13,7 +13,7 @@ public class                Baloon extends Aircraft implements Flyable {
 	
     public void updateConditions() {	
 		//System.out.println("updateConditions from Baloon !!!");
-		this.conditionsChanged();
+		weatherTower.conditionsChanged();
 		if (weatherTower.getWeather(super.coordinates) == "SUN")
 		{
 			super.coordinates.setLongitude((super.coordinates.getLongitude() + 2 > 100) ? 100 : super.coordinates.getLongitude() + 2);
