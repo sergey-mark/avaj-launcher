@@ -8,14 +8,17 @@ public class                Baloon extends Aircraft implements Flyable {
 		super(name, coordinates); //super() permet d'appeler le contructeur parent
 		System.out.println("Call of class Baloon.");
 		this.registerTower(weatherTower);
-		weatherTower.getWeather(coordinates);
+		//weatherTower.getWeather(coordinates);
+		//updateConditions();
 	}
 	
     public void updateConditions() {	
-		//System.out.println("updateConditions from Baloon !!!");
+		System.out.println("updateConditions from Baloon !!!");
 		weatherTower.conditionsChanged();
+		System.out.println(weatherTower.getWeather(super.coordinates));
 		if (weatherTower.getWeather(super.coordinates) == "SUN")
 		{
+			System.out.println("SUN !!!");
 			super.coordinates.setLongitude((super.coordinates.getLongitude() + 2 > 100) ? 100 : super.coordinates.getLongitude() + 2);
 			super.coordinates.setHeight((super.coordinates.getHeight() + 4 > 100) ? 100 : super.coordinates.getHeight() + 4);
 		}

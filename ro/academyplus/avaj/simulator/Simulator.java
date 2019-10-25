@@ -19,8 +19,8 @@ public class Simulator {
         File f = null;
         FileReader r = null;
         BufferedReader bfr = null;
-        String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
-        //String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
+        //String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
+        String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
         int i = 0;
         AircraftFactory af = null;
         int nbrWeather = 0;

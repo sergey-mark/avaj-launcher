@@ -5,7 +5,7 @@ public class                  Aircraft {
     protected long            id;
     protected String          name;
     protected Coordinates     coordinates;
-    private long              idCounter = 0;
+    static private long              idCounter = 0;
 
     protected Aircraft() {
     }
@@ -15,11 +15,12 @@ public class                  Aircraft {
         this.coordinates = coordinates;
         this.name = name;
         this.id = this.nextId();
+        System.out.println("id:" + this.id);
     }
 
-    private long nextId() {
-
-        return this.idCounter++;
+    static private long nextId() {
+        idCounter++;
+        return idCounter;
     }
 
 }
