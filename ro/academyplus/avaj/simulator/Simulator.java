@@ -34,7 +34,7 @@ public class Simulator {
             r = new FileReader(f);
             bfr = new BufferedReader(r);
             while ((temp = bfr.readLine()) != null) {
-                System.out.println(temp);
+                //System.out.println(temp);
                 if (i == 0)
                     nbrWeather = Integer.parseInt(temp);
                 else
@@ -43,22 +43,21 @@ public class Simulator {
                     String[] parts = temp.split(" ");
                     af = new AircraftFactory();
                     //System.out.println(parts[0]);
-                    af.newAircraft(parts[0],
-                                parts[1],
-                                Integer.parseInt(parts[2]),
-                                Integer.parseInt(parts[3]),
-                                Integer.parseInt(parts[4]));
+                    Flyable flyable = af.newAircraft(parts[0],
+                                                    parts[1],
+                                                    Integer.parseInt(parts[2]),
+                                                    Integer.parseInt(parts[3]),
+                                                    Integer.parseInt(parts[4]));
+                    flyable.registerTower(weatherTower);
                 }
                 i++;
             }
-            System.out.println("Nbr of weather changes:" + nbrWeather);
+            //System.out.println("Nbr of weather changes:" + nbrWeather);
             int j = 0;
             if (nbrWeather > 0) {
                 while (j < nbrWeather) {
-                    //af.changeWeather();
-                    System.out.println("Conditions changed:" + j);
+                    //System.out.println("Conditions changed:" + j);
                     weatherTower.changeWeather();
-                    //weatherTower.getWeather();
                     j++;
                 }
             }
@@ -81,7 +80,7 @@ public class Simulator {
 		    if (args[0] != null && args.length == 1)
         	{
                 //System.out.println("ok inside");
-                fileloader(args[0]); 
+                fileloader(args[0]);
         	}
         } catch (Exception ex) {
         }

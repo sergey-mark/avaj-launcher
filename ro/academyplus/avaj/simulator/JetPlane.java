@@ -2,14 +2,10 @@ package ro.academyplus.avaj.simulator;
 
 public class                JetPlane extends Aircraft implements Flyable {
 
-    private WeatherTower    weatherTower = null;
+	private WeatherTower    weatherTower = new WeatherTower();
 
     public JetPlane(String name, Coordinates coordinates) {
 		super(name, coordinates); //super() permet d'appeler le contructeur parent
-		System.out.println("Call of class JetPlane.");
-		this.registerTower(weatherTower);
-		//updateConditions();
-		//weatherTower.conditionsChanged();
     }
 
 	public void updateConditions() {	
@@ -19,25 +15,35 @@ public class                JetPlane extends Aircraft implements Flyable {
 
 		if (currweather.equals("SUN"))
 		{
+			mess = "Shine and sunny day to get your jetPlane out!";
 			super.coordinates.setLatitude((super.coordinates.getLatitude() + 10 > 100) ? 100 : super.coordinates.getLatitude() + 10);
 			super.coordinates.setHeight((super.coordinates.getHeight() + 2 > 100) ? 100 : super.coordinates.getHeight() + 2);
 		}
-		else if (currweather.equals("RAIN"))
+		else if (currweather.equals("RAIN")) {
+			mess = "It's raining. Better watch out for lightings.";
 			super.coordinates.setLatitude((super.coordinates.getLatitude() + 5 > 100) ? 100 : super.coordinates.getLatitude() + 5);
-		else if (currweather.equals("FOG"))
+		}
+		else if (currweather.equals("FOG")) {
+			mess = "Damned fog! I can't see a thing two feet away.";
 			super.coordinates.setLatitude((super.coordinates.getLatitude() + 1 > 100) ? 100 : super.coordinates.getLatitude() + 1);
-		else if (currweather.equals("SNOW"))
+		}
+		else if (currweather.equals("SNOW")) {
+			mess = "OMG! Winter is coming!";
 			super.coordinates.setHeight((super.coordinates.getHeight() >= 7) ? super.coordinates.getHeight() - 7 : 0);
+		}
 		System.out.println("JetPlane" + "#" + super.name + "(" + super.id + "): " + mess);
-		if (super.coordinates.getHeight() == 0) //If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
+		if (super.coordinates.getHeight() == 0) { //If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
 			this.weatherTower.unregister(this);
-		
+			System.out.println("JetPlane" + "#" + super.name + "(" + super.id + ") landing.");
+		} else if (coordinates.getHeight() > 100)
+			coordinates.setHeight(100);
 	}
     	public void registerTower(WeatherTower weatherTower) {
 		
 		//System.out.println("registerTower from Baloon !!!");
+		this.weatherTower = weatherTower;
 		weatherTower.register(this);
-		System.out.println("Tower says: " + "JetPlane" + "#" + super.name + "(" + super.id + ") registered from weather tower.");
+		//System.out.println("Tower says: " + "JetPlane" + "#" + super.name + "(" + super.id + ") registered to weather tower.");
 	}
 
 }
