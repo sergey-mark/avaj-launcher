@@ -52,9 +52,11 @@ public class Simulator {
                     }
                     i++;
                 }
-            }
+            } // https://stackoverflow.com/questions/3776327/how-to-define-custom-exception-class-in-java-the-easiest-way
+            // https://docs.oracle.com/javase/7/docs/api/java/io/FileNotFoundException.html
             catch (FileNotFoundException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("This is my custom exception:");
             } 
             catch (IOException ex) {
                 ex.printStackTrace();
