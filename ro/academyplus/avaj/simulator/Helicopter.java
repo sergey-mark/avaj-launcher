@@ -9,12 +9,10 @@ public class                Helicopter extends Aircraft implements Flyable {
 	}
 
 	public void updateConditions() {
-		//System.out.println("updateConditions from Helictopter !!!");
 		
 		String mess = "default";
 		String currweather = weatherTower.getWeather(super.coordinates);
 
-		//System.out.println(weatherTower.getWeather(super.coordinates));
 		if (currweather.equals("SUN"))
 		{
 			mess = "This is hot.";
@@ -34,17 +32,13 @@ public class                Helicopter extends Aircraft implements Flyable {
 			super.coordinates.setHeight((super.coordinates.getHeight() >= 12) ? super.coordinates.getHeight() - 12 : 0);
 		}
 		System.out.println("Helicopter" + "#" + super.name + "(" + super.id + "): " + mess);
-		if (super.coordinates.getHeight() == 0) { //If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
-			System.out.println("Helicopter" + "#" + super.name + "(" + super.id + ") landing.");
-			this.weatherTower.unregister(this);
-		} else if (coordinates.getHeight() > 100)
+		if (coordinates.getHeight() > 100)
 			coordinates.setHeight(100);
 		
 	}
     public void registerTower(WeatherTower weatherTower) {
 		this.weatherTower = weatherTower;
 		weatherTower.register(this);
-		//System.out.println("Tower says: " + "Helicopter" + "#" + super.name + "(" + super.id + ") registered to weather tower.");
 	}
 
 }

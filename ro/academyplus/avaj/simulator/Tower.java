@@ -9,7 +9,6 @@ public class Tower {
 
     public void register(Flyable flyable) {
 
-        //System.out.println("Call of function register from Tower."); 
         observers.add( flyable ); // https://www.commentcamarche.net/forum/affich-5578263-creer-une-liste-avec-java
         String type = flyable.getClass().getTypeName().split("\\.")[4];
         switch (type) {
@@ -32,9 +31,7 @@ public class Tower {
     }
     public void unregister(Flyable flyable) {
 
-        //System.out.println("Call of function unregister from Tower."); 
         observers.remove( flyable );
-        //System.out.println("UnRegister !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         String type = flyable.getClass().getTypeName().split("\\.")[4];
         switch (type) {
             case "Baloon": {
@@ -61,12 +58,16 @@ public class Tower {
         // http://design-patterns.fr/observateur-en-java
         for(int i=0;i<observers.size();i++)
         {
-            //System.out.println("Call of function conditionsChanged to updateConditions from Tower."); 
             Flyable o = observers.get(i);
             o.updateConditions();// On utilise la méthode "tiré".
+            Aircraft af = (Aircraft) o;
+            if (af.coordinates.getHeight() == 0) {//If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
+                String type = o.getClass().getTypeName().split("\\.")[4];
+                System.out.println(type + "#" + af.name + "(" + af.id + ") landing.");
+                this.unregister(o);
+                i--; // Due to unregister of Aircraft we need to unincrement list.
+            }
         }
-
-
 
     }
    

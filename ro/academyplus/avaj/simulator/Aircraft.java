@@ -15,12 +15,10 @@ public class                  Aircraft {
         this.coordinates = coordinates;
         this.name = name;
         this.id = nextId();
-        //System.out.println("id:" + this.id);
     }
 
     static private long nextId() {
-        idCounter++;
-        return idCounter;
+        return idCounter++;
     }
 
 }

@@ -1,12 +1,13 @@
 // Compile with:
-//javac Simulator.java && java Simulator docs/scenario.txt
+//find . -name "*.java" > sources.txt && javac -sourcepath @sources.txt && java ro.academyplus.avaj.simulator.Simulator docs/scenario.txt
 
 package ro.academyplus.avaj.simulator;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
 
 public class Simulator {
 
@@ -16,74 +17,61 @@ public class Simulator {
 
     public static void fileloader(String filename) {
         
-        File f = null;
-        FileReader r = null;
-        BufferedReader bfr = null;
-        //String fullpath = "/Users/billettepy/work/avaj-launcher/" + filename; // At Home
-        String fullpath = "/Users/pbillett/avaj-launcher/" + filename; // 42
-        int i = 0;
-        AircraftFactory af = null;
-        int nbrWeather = 0;
-        WeatherTower weatherTower = new WeatherTower();
+            List<String> lines = null;
+            Pattern pattern;
+            Matcher matcher;
+            Path fullpath = Paths.get(filename);
+            AircraftFactory af = new AircraftFactory();
+            int nbrWeather = 0;
+            WeatherTower weatherTower = new WeatherTower();
+            int i = 1;
 
-        //System.out.println("Call of fileloader.");
-        f = new File(fullpath);
-        try {
-            //System.out.println("Call of try");
-            String temp = "";
-            r = new FileReader(f);
-            bfr = new BufferedReader(r);
-            while ((temp = bfr.readLine()) != null) {
-                //System.out.println(temp);
-                if (i == 0)
-                    nbrWeather = Integer.parseInt(temp);
-                else
-                {
-                    //System.out.println("Call of supersplit");
-                    String[] parts = temp.split(" ");
-                    af = new AircraftFactory();
-                    //System.out.println(parts[0]);
-                    Flyable flyable = af.newAircraft(parts[0],
-                                                    parts[1],
-                                                    Integer.parseInt(parts[2]),
-                                                    Integer.parseInt(parts[3]),
-                                                    Integer.parseInt(parts[4]));
-                    flyable.registerTower(weatherTower);
+            try {
+                lines = Files.readAllLines(fullpath, StandardCharsets.UTF_8);
+                // See pattern filtering here: https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+                pattern = Pattern.compile("([0-9]+)");
+                matcher = pattern.matcher(lines.get(0));
+                if (matcher.find() && matcher.group() == lines.get(0)) {
+                    
+                    nbrWeather = Integer.parseInt(matcher.group(1));
+                } else {
+                    System.out.println("Error line: " + lines.get(0));
+                    return;
                 }
-                i++;
+                pattern = Pattern.compile("(Baloon|JetPlane|Helicopter) ([A-Za-z0-9]+) ([0-9]+) ([0-9]+) ([0-9]+)");
+                while (i < lines.size()) {
+                    matcher = pattern.matcher(lines.get(i));
+                    if (matcher.find() && matcher.group() == lines.get(i)) {
+                        int height = (Integer.parseInt(matcher.group(5)) > 100) ? 100 : Integer.parseInt(matcher.group(5));
+                        
+                        Flyable flyable = af.newAircraft(matcher.group(1), matcher.group(2), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4)), height);
+                        flyable.registerTower(weatherTower);
+                    } else {
+                        System.out.println("Error line: " + lines.get(i));
+                        return;
+                    }
+                    i++;
+                }
             }
-            //System.out.println("Nbr of weather changes:" + nbrWeather);
+            catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } 
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
             int j = 0;
             if (nbrWeather > 0) {
                 while (j < nbrWeather) {
-                    //System.out.println("Conditions changed:" + j);
                     weatherTower.changeWeather();
                     j++;
                 }
             }
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            bfr.close();
-        } catch (IOException ex) {
-        }
-
     }
     public static void main(String[] args) {
-        //System.out.println("Call of Class Simulator.");
-        //System.out.println(args[0]);
-        //System.out.println(args.length);
-        try {
-		    if (args[0] != null && args.length == 1)
-        	{
-                //System.out.println("ok inside");
-                fileloader(args[0]);
-        	}
-        } catch (Exception ex) {
-        }
+		if (args[0] != null && args.length == 1)
+            fileloader(args[0]);
+        else
+            System.out.println("Warning ! Please put one scenario file!");
     }
     
 }

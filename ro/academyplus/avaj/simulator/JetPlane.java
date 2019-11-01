@@ -9,7 +9,7 @@ public class                JetPlane extends Aircraft implements Flyable {
     }
 
 	public void updateConditions() {	
-		//System.out.println("updateConditions from Baloon !!!");
+		
 		String mess = "default";
 		String currweather = weatherTower.getWeather(super.coordinates);
 
@@ -32,18 +32,13 @@ public class                JetPlane extends Aircraft implements Flyable {
 			super.coordinates.setHeight((super.coordinates.getHeight() >= 7) ? super.coordinates.getHeight() - 7 : 0);
 		}
 		System.out.println("JetPlane" + "#" + super.name + "(" + super.id + "): " + mess);
-		if (super.coordinates.getHeight() == 0) { //If an aircraft reaches height 0 or needs to go below unregisters from the weather tower
-			this.weatherTower.unregister(this);
-			System.out.println("JetPlane" + "#" + super.name + "(" + super.id + ") landing.");
-		} else if (coordinates.getHeight() > 100)
+		if (coordinates.getHeight() > 100)
 			coordinates.setHeight(100);
 	}
     	public void registerTower(WeatherTower weatherTower) {
 		
-		//System.out.println("registerTower from Baloon !!!");
 		this.weatherTower = weatherTower;
 		weatherTower.register(this);
-		//System.out.println("Tower says: " + "JetPlane" + "#" + super.name + "(" + super.id + ") registered to weather tower.");
 	}
 
 }
