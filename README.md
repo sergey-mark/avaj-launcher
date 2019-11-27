@@ -6,7 +6,9 @@
 #TO START THE PROGRAM:
 
 // To run All:
-find . -name "*.java" > sources.txt && javac -sourcepath @sources.txt && java ro.academyplus.avaj.simulator.Simulator docs/scenario.txt
+find . -name "*.java" > sources.txt && javac -sourcepath @sources.txt && java ro.academyplus.avaj.simulator.Simulator docs/scenario.txt > simulation.txt
+or 
+javac -d . *.java && java ro.academyplus.avaj.simulator.Simulator docs/scenario.txt > simulation.txt
 
 // To compile one file:
 javac Simulator.java
