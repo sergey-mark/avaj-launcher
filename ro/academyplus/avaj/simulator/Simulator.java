@@ -32,7 +32,6 @@ public class Simulator {
                 pattern = Pattern.compile("([0-9]+)");
                 matcher = pattern.matcher(lines.get(0));
                 if (matcher.find() && matcher.group() == lines.get(0)) {
-                    
                     nbrWeather = Integer.parseInt(matcher.group(1));
                 } else {
                     System.out.println("Error line: " + lines.get(0));
@@ -55,8 +54,17 @@ public class Simulator {
             } // https://stackoverflow.com/questions/3776327/how-to-define-custom-exception-class-in-java-the-easiest-way
             // https://docs.oracle.com/javase/7/docs/api/java/io/FileNotFoundException.html
             catch (IOException ex) {
-                //ex.printStackTrace();
                 System.out.println("Warning wrong file name or input file !");
+                //ex.printStackTrace();
+            }
+	    catch (java.lang.IndexOutOfBoundsException ex) {
+                System.out.println("Warning wrong Out of Bounds Exception !");
+	    }
+	    catch (java.lang.OutOfMemoryError ex) {
+                System.out.println("Warning Out of memory Exception !");
+	    }
+	    catch (java.lang.NumberFormatException ex2) {
+                System.out.println("Warning wrong format number exception !");
             }
             int j = 0;
             if (nbrWeather > 0) {
@@ -67,7 +75,8 @@ public class Simulator {
             }
     }
     public static void main(String[] args) {
-		if (args[0] != null && args.length == 1)
+	
+	if (args.length == 1 && args[0] != null)
             fileloader(args[0]);
         else
             System.out.println("Warning ! Please put one scenario file!");
